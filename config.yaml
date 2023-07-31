@@ -1,0 +1,14 @@
+apiVersion: k3d.io/v1alpha2
+kind: Simple
+servers: 1
+agents: 1
+ports:
+  - port: "80:80"
+volumes:
+  - volume: /etc/test:/etc/test:ro
+  - volume: /var/log/journal:/var/log/journal:ro
+  - volume: /var/run/docker.sock:/var/run/docker.sock
+k3s:
+  args:
+    - server
+    - "--no-deploy=traefik"
