@@ -14,8 +14,8 @@ COPY . .
 # Build the app
 #RUN npm run test
 
-# This app listens on port 8080
-EXPOSE 8080
+# This app listens on port 80
+EXPOSE 80
 
 # Start the app
 CMD [ "npm", "start" ]
