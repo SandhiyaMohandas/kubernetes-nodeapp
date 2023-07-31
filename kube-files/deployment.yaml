@@ -6,6 +6,7 @@ metadata:
 spec:
   replicas: 1
   selector:
+  ## services pick correspondind pods with the labels
     matchLabels:
       app: node-app
   template:
@@ -19,6 +20,7 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
+        ## resource limitations for the containers
         resources:
           limits:
             cpu: "1"
@@ -27,12 +29,16 @@ spec:
             cpu: "250m"
             memory: "250Mi"
         securityContext:
+          ## this enables the container to run as  non-root user, but the creation of pod needs root acces, hence disabled it
           #          runAsNonRoot: true
+          ## filesystem is made readonly
           readOnlyRootFilesystem: true
+          ## disallow privilege escalation.
           allowPrivilegeEscalation: false
           capabilities:
             drop:
             - ALL
+        ## livenessProbe and readinessProbe    
         livenessProbe:
           httpGet:
             path: /info
