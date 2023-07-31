@@ -5,6 +5,7 @@ metadata:
   name: node-app-service
   namespace: node-app
 spec:
+  ## service picks the corresponding pods based on the label selector.
   selector:
     app: node-app
   ports:
